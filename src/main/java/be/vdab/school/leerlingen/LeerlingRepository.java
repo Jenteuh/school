@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class LeerlingRepository {
 
     public LeerlingRepository() {
-        System.out.println("LandRepository constructor");
+        System.out.println("LeerlingRepository constructor");
     }
 
 }
