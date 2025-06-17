@@ -1,5 +1,6 @@
 package be.vdab.school.lessen;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -9,8 +10,15 @@ import java.util.List;
 
 @Component
 public class LesRepository {
+
+    private final String pad;
+
+    public LesRepository(@Value("${lessenCsvPad}") String pad) {
+        this.pad = pad;
+    }
+
     public List<Les> findAll() {
-        try (var regels = Files.lines(Path.of("/data/lessen.csv"))) {
+        try (var regels = Files.lines(Path.of(pad))) {
             return regels
                     .map(regel -> regel.split(",")) // regel splitsen in zijn onderdelen
                     .map(regelOnderdelen -> // Taal object maken met die onderdelen
